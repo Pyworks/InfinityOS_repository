@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# 2017 - 2016 (c) Pyworks
+# Nano Package Installation (compile from source)
+
+
+echo "-> Making .nano_pkg"
+mkdir .nano_pkg
+echo "-> Downloading a nano from mirror."
+wget http://mirror.nbtelecom.com.br/gnu/nano/nano-2.8.7.tar.xz
+echo "-> Compiling package..."
+mv ./nano-2.8.7.tar.xz ./.nano_pkg
+tar -Jxfv ./.nano_pkg/nano-2.8.7.tar.xz
+echo "-> Running a ./configure..."
+sh -c './.nano_pkg/.configure --prefix=/usr --enable-utf-8'
+sh -c 'make ./.nano_pkg/ -j7'
+sh -c 'make install ./.nano_pkg/ -j7'
+# Aqui termina a instalação...
+echo "Installed nano."
